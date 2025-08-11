@@ -3,6 +3,7 @@ package com.example.myapplication;
 public class Note {
     private String title;
     private String createdDate;
+    private User owner; // เพิ่มข้อมูลเจ้าของโน้ต
 
     public Note(String title, String createdDate) {
         this.title = title;
@@ -26,8 +27,17 @@ public class Note {
         this.createdDate = createdDate;
     }
 
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
     // Polymorphism
     public String display() {
-        return "Note: " + title + " (" + createdDate + ")";
+        String ownerInfo = (owner != null) ? "\nOwner: " + owner.getName() + " (ID: " + owner.getUserId() + ")" : "\nOwner: Unknown";
+        return "Note: " + title + " (" + createdDate + ")" + ownerInfo;
     }
 }

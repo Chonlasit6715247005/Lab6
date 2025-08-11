@@ -18,7 +18,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
     Button submitTextNote;
     TextView showNote;
-    EditText titleOfTextNote, contentOfTextNote;
+    EditText titleOfTextNote, contentOfTextNote, userNameInput, userIdInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,8 @@ public class AddNoteActivity extends AppCompatActivity {
         submitTextNote = findViewById(R.id.button4);
         titleOfTextNote = findViewById(R.id.editTextText);
         contentOfTextNote = findViewById(R.id.editTextText2);
+        userNameInput = findViewById(R.id.editTextUserName);
+        userIdInput = findViewById(R.id.editTextUserId);
         showNote = findViewById(R.id.textView2);
 
         submitTextNote.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +46,17 @@ public class AddNoteActivity extends AppCompatActivity {
                 String strOfContent = contentOfTextNote.getText().toString();
                 String strOfDate = new Date().toString();
 
+                String strUserName = userNameInput.getText().toString();
+                String strUserId = userIdInput.getText().toString();
+
+                // สร้าง User (เป็น PremiumUser ตัวอย่าง)
+                User noteOwner = new PremiumUser(strUserName, strUserId, true);
+
+                // สร้าง Note และกำหนด Owner
                 TextNote textNote1 = new TextNote(strOfTitle, strOfDate, strOfContent);
+                textNote1.setOwner(noteOwner);
+
+                // แสดงผล
                 showNote.setText(textNote1.display());
             }
         });
