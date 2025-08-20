@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 
 import androidx.activity.EdgeToEdge;
@@ -20,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     Button addNoteButton;
     Button aboutMeButton;
     Button submitTextNote;
+    Button addButton,browseButton;
+    ImageView logo;
+    ProgressBar progressBar;
 
 
     @Override
@@ -33,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        browseButton = findViewById(R.id.button5);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
+
+        logo = findViewById(R.id.imageView);
+        logo.setImageResource(R.drawable.note);
         addNoteButton = findViewById(R.id.button);
         addNoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +51,26 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Click");
                 Intent aboutMe = new Intent(getApplicationContext(),AddNoteActivity.class);
                 startActivity(aboutMe);
+            }
+        });
+        browseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
+
+                new Thread(()->{
+                    try{
+                        Thread.sleep(2000);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    runOnUiThread(()->{
+                                progressBar.setVisibility(View.GONE);
+                                Intent addIntent = new Intent(getApplicationContext(),BrowseNoteActivity.class);
+                                startActivity(addIntent);
+                            }
+                    );
+                }).start();
             }
         });
         aboutMeButton = findViewById(R.id.button2);
