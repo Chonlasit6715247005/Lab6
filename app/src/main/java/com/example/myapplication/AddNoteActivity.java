@@ -33,8 +33,8 @@ public class AddNoteActivity extends AppCompatActivity {
         });
 
         submitTextNote = findViewById(R.id.button4);
-        titleOfTextNote = findViewById(R.id.editTextText);
-        contentOfTextNote = findViewById(R.id.editTextText2);
+        titleOfTextNote = findViewById(R.id.editTextUserName);
+        contentOfTextNote = findViewById(R.id.editTextUserId);
         userNameInput = findViewById(R.id.editTextUserName);
         userIdInput = findViewById(R.id.editTextUserId);
         showNote = findViewById(R.id.textView2);
