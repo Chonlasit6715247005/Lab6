@@ -1,9 +1,9 @@
 package com.example.myapplication;
 
 public class Note {
-    private String title;
-    private String createdDate;
-    private User owner; // เพิ่มข้อมูลเจ้าของโน้ต
+    public String title;
+    public String createdDate;
+    private User owner;
 
     public Note(String title, String createdDate) {
         this.title = title;
